@@ -166,146 +166,206 @@
     </div>
 
     <script>
-        let products = [
-            { id: 1, name: "Tulipa Amarela", category: "flor", price: 20.00, img: "https://i.ibb.co/j9RJWt37/Whats-App-Image-2026-05-10-at-14-18-33.jpg" },
-            { id: 2, name: "Tulipa Roxa com Verde", category: "flor", price: 15.00, img: "https://i.ibb.co/G3CPZCD6/Whats-App-Image-2026-05-09-at-11-29-25-1.jpg" },
-            { id: 3, name: "Tulipa Rosa com Amarelo", category: "flor", price: 15.00, img: "https://i.ibb.co/QF7Dh6xM/Whats-App-Image-2026-05-09-at-11-29-25-2.jpg" },
-            { id: 4, name: "Flor Azul", category: "flor", price: 15.00, img: "https://i.ibb.co/N2tRk1qN/Whats-App-Image-2026-05-09-at-11-29-25.jpg" },
-            { id: 5, name: "Lírio Lilás", category: "flor", price: 15.00, img: "https://i.ibb.co/rRfTBVdq/Whats-App-Image-2026-05-09-at-11-29-26-2.jpg" },
-            { id: 6, name: "Lírio Rosa", category: "flor", price: 15.00, img: "https://i.ibb.co/Q3XsnPY9/Whats-App-Image-2026-05-09-at-11-29-26.jpg" },
-            { id: 7, name: "Buquê com Chocolates (preço variado)", category: "flor", price: 50.00, img: "https://i.ibb.co/fG9jz7Mx/Whats-App-Image-2026-05-09-at-11-34-28.jpg" },
-            { id: 8, name: "Pudim de Leite", category: "pudim", price: 8.00, img: "https://i.ibb.co/W47hJtvz/Whats-App-Image-2026-05-09-at-11-31-26.jpg" }
-        ]
+    let products = [
+        { id: 1, name: "Tulipa Amarela", category: "flor", price: 20.00, img: "https://i.ibb.co/j9RJWt37/Whats-App-Image-2026-05-10-at-14-18-33.jpg" },
+        { id: 2, name: "Tulipa Roxa com Verde", category: "flor", price: 15.00, img: "https://i.ibb.co/G3CPZCD6/Whats-App-Image-2026-05-09-at-11-29-25-1.jpg" },
+        { id: 3, name: "Tulipa Rosa com Amarelo", category: "flor", price: 15.00, img: "https://i.ibb.co/QF7Dh6xM/Whats-App-Image-2026-05-09-at-11-29-25-2.jpg" },
+        { id: 4, name: "Flor Azul", category: "flor", price: 15.00, img: "https://i.ibb.co/N2tRk1qN/Whats-App-Image-2026-05-09-at-11-29-25.jpg" },
+        { id: 5, name: "Lírio Lilás", category: "flor", price: 15.00, img: "https://i.ibb.co/rRfTBVdq/Whats-App-Image-2026-05-09-at-11-29-26-2.jpg" },
+        { id: 6, name: "Lírio Rosa", category: "flor", price: 15.00, img: "https://i.ibb.co/Q3XsnPY9/Whats-App-Image-2026-05-09-at-11-29-26.jpg" },
+        { id: 7, name: "Buquê com Chocolates (preço variado)", category: "flor", price: 50.00, img: "https://i.ibb.co/fG9jz7Mx/Whats-App-Image-2026-05-09-at-11-34-28.jpg" },
+        { id: 8, name: "Pudim de Leite", category: "pudim", price: 8.00, img: "https://i.ibb.co/W47hJtvz/Whats-App-Image-2026-05-09-at-11-31-26.jpg" }
+    ]
 
-        let cart = []
+    let cart = []
 
-        function renderProducts() {
-            const floresList = document.getElementById('flores-list')
-            const pudinsList = document.getElementById('pudins-list')
-            
-            floresList.innerHTML = ''
-            pudinsList.innerHTML = ''
+    function renderProducts() {
+        const floresList = document.getElementById('flores-list')
+        const pudinsList = document.getElementById('pudins-list')
+        
+        floresList.innerHTML = ''
+        pudinsList.innerHTML = ''
 
-            products.forEach(product => {
-                const div = document.createElement('div')
-                div.className = `bg-white rounded-3xl p-6 shadow-xl card-hover border border-pink-100`
-                div.innerHTML = `
-                    <img src="${product.img}" class="w-full h-52 object-contain mx-auto mb-4 rounded-2xl" alt="${product.name}">
-                    <h4 class="font-semibold text-xl mb-2 text-center">${product.name}</h4>
-                    <p class="text-pink-600 text-2xl font-bold text-center mb-5">R$ ${product.price.toFixed(2)}</p>
-                    <button onclick="addToCart(${product.id})" 
-                            class="w-full bg-pink-500 hover:bg-pink-600 text-white py-4 rounded-2xl font-medium transition">
-                        Adicionar ao Carrinho
-                    </button>
-                `
-                if (product.category === 'flor') {
-                    floresList.appendChild(div)
-                } else {
-                    pudinsList.appendChild(div)
-                }
-            })
+        products.forEach(product => {
+            const div = document.createElement('div')
+            div.className = `bg-white rounded-3xl p-6 shadow-xl card-hover border border-pink-100`
+            div.innerHTML = `
+                <img src="${product.img}" class="w-full h-52 object-contain mx-auto mb-4 rounded-2xl" alt="${product.name}">
+                <h4 class="font-semibold text-xl mb-2 text-center">${product.name}</h4>
+                <p class="text-pink-600 text-2xl font-bold text-center mb-5">R$ ${product.price.toFixed(2)}</p>
+                <button onclick="addToCart(${product.id})" 
+                        class="w-full bg-pink-500 hover:bg-pink-600 text-white py-4 rounded-2xl font-medium transition">
+                    Adicionar ao Carrinho
+                </button>
+            `
+            if (product.category === 'flor') {
+                floresList.appendChild(div)
+            } else {
+                pudinsList.appendChild(div)
+            }
+        })
+    }
+
+    function addToCart(id) {
+        const product = products.find(p => p.id === id)
+        if (!product) return
+        
+        cart.push({...product})
+        updateCartCount()
+        renderFormCart()   // ← Atualiza o formulário automaticamente
+        
+        // Notificação
+        const notif = document.createElement('div')
+        notif.className = "fixed bottom-8 right-8 bg-green-500 text-white px-8 py-4 rounded-2xl shadow-2xl z-[300]"
+        notif.innerHTML = `✅ ${product.name} adicionado!`
+        document.body.appendChild(notif)
+        setTimeout(() => notif.remove(), 2200)
+    }
+
+    function updateCartCount() {
+        document.getElementById('cart-count').textContent = cart.length
+    }
+
+    // ==================== NOVAS FUNÇÕES ====================
+
+    function renderFormCart() {
+        const container = document.getElementById('cart-items')
+        const totalEl = document.getElementById('total-price')
+        
+        container.innerHTML = ''
+        let total = 0
+
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <p class="text-gray-400 text-center py-8">
+                    Nenhum item no carrinho ainda.<br>
+                    Adicione produtos acima!
+                </p>`
+            totalEl.textContent = 'R$ 0,00'
+            return
         }
 
-        function addToCart(id) {
-            const product = products.find(p => p.id === id)
-            cart.push({...product})
-            updateCartCount()
-            
-            const notif = document.createElement('div')
-            notif.className = "fixed bottom-8 right-8 bg-green-500 text-white px-8 py-4 rounded-2xl shadow-2xl z-[300]"
-            notif.innerHTML = `✅ ${product.name} adicionado!`
-            document.body.appendChild(notif)
-            setTimeout(() => notif.remove(), 2200)
-        }
-
-        function updateCartCount() {
-            document.getElementById('cart-count').textContent = cart.length
-        }
-
-        function toggleCart() {
-            const modal = document.getElementById('cart-modal')
-            modal.classList.toggle('hidden')
-            renderCartModal()
-        }
-
-        function renderCartModal() {
-            const container = document.getElementById('modal-cart-items')
-            container.innerHTML = ''
-            let total = 0
-            
-            cart.forEach((item, index) => {
-                total += item.price
-                const div = document.createElement('div')
-                div.className = "flex justify-between items-center border-b pb-6"
-                div.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <img src="${item.img}" class="w-16 h-16 object-contain">
-                        <div>
-                            <p class="font-medium">${item.name}</p>
-                            <p class="text-pink-500">R$ ${item.price.toFixed(2)}</p>
-                        </div>
+        cart.forEach((item, index) => {
+            total += item.price
+            const div = document.createElement('div')
+            div.className = "flex items-center justify-between bg-pink-50 p-4 rounded-2xl mb-3"
+            div.innerHTML = `
+                <div class="flex items-center gap-4">
+                    <img src="${item.img}" class="w-12 h-12 object-contain rounded-xl">
+                    <div>
+                        <p class="font-medium text-sm">${item.name}</p>
+                        <p class="text-pink-600 font-semibold">R$ ${item.price.toFixed(2)}</p>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                `
-                container.appendChild(div)
-            })
-            
-            document.getElementById('modal-total').textContent = `R$ ${total.toFixed(2)}`
-        }
+                </div>
+                <button onclick="removeFromFormCart(${index})" 
+                        class="text-red-500 hover:text-red-700 p-2">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            `
+            container.appendChild(div)
+        })
 
-        function removeFromCart(index) {
-            cart.splice(index, 1)
-            updateCartCount()
-            renderCartModal()
-        }
+        totalEl.textContent = `R$ ${total.toFixed(2)}`
+    }
 
-        function irParaPedido() {
-            toggleCart()
-            document.getElementById('pedidos').scrollIntoView({ behavior: 'smooth' })
-        }
+    function removeFromFormCart(index) {
+        cart.splice(index, 1)
+        updateCartCount()
+        renderFormCart()
+        renderCartModal() // mantém o modal atualizado também
+    }
 
-        function enviarPedido(e) {
-            e.preventDefault()
-            
-            const nome = document.getElementById('nome').value
-            const whatsapp = document.getElementById('whatsapp').value
-            const endereco = document.getElementById('endereco').value
-            const personalizacao = document.getElementById('personalizacao').value || "Sem personalização"
+    // ==================== FUNÇÕES EXISTENTES ATUALIZADAS ====================
 
-            if (cart.length === 0) {
-                alert("Seu carrinho está vazio!")
-                return
-            }
-            
-            let pedidos = JSON.parse(localStorage.getItem('pedidos')) || []
-            
-            const novoPedido = {
-                id: Date.now(),
-                data: new Date().toLocaleString('pt-BR'),
-                nome: nome,
-                whatsapp: whatsapp,
-                endereco: endereco,
-                personalizacao: personalizacao,
-                itens: cart,
-                total: cart.reduce((acc, item) => acc + item.price, 0)
-            }
-            
-            pedidos.push(novoPedido)
-            localStorage.setItem('pedidos', JSON.stringify(pedidos))
-            
-            alert(`🎉 Pedido enviado com sucesso!\n\nEntraremos em contato pelo WhatsApp em breve.`)
-            
-            document.getElementById('order-form').reset()
-            cart = []
-            updateCartCount()
-        }
+    function toggleCart() {
+        const modal = document.getElementById('cart-modal')
+        modal.classList.toggle('hidden')
+        if (!modal.classList.contains('hidden')) renderCartModal()
+    }
 
-        window.onload = function() {
-            renderProducts()
-            updateCartCount()
+    function renderCartModal() {
+        const container = document.getElementById('modal-cart-items')
+        container.innerHTML = ''
+        let total = 0
+        
+        cart.forEach((item, index) => {
+            total += item.price
+            const div = document.createElement('div')
+            div.className = "flex justify-between items-center border-b pb-6"
+            div.innerHTML = `
+                <div class="flex items-center gap-4">
+                    <img src="${item.img}" class="w-16 h-16 object-contain">
+                    <div>
+                        <p class="font-medium">${item.name}</p>
+                        <p class="text-pink-500">R$ ${item.price.toFixed(2)}</p>
+                    </div>
+                </div>
+                <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            `
+            container.appendChild(div)
+        })
+        
+        document.getElementById('modal-total').textContent = `R$ ${total.toFixed(2)}`
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1)
+        updateCartCount()
+        renderCartModal()
+        renderFormCart()   // ← importante: atualiza também o formulário
+    }
+
+    function irParaPedido() {
+        toggleCart()
+        document.getElementById('pedidos').scrollIntoView({ behavior: 'smooth' })
+        setTimeout(renderFormCart, 600) // dá tempo de rolar e depois atualiza
+    }
+
+    function enviarPedido(e) {
+        e.preventDefault()
+        
+        const nome = document.getElementById('nome').value
+        const whatsapp = document.getElementById('whatsapp').value
+        const endereco = document.getElementById('endereco').value
+        const personalizacao = document.getElementById('personalizacao').value || "Sem personalização"
+
+        if (cart.length === 0) {
+            alert("Seu carrinho está vazio!")
+            return
         }
+        
+        let pedidos = JSON.parse(localStorage.getItem('pedidos')) || []
+        
+        const novoPedido = {
+            id: Date.now(),
+            data: new Date().toLocaleString('pt-BR'),
+            nome: nome,
+            whatsapp: whatsapp,
+            endereco: endereco,
+            personalizacao: personalizacao,
+            itens: cart,
+            total: cart.reduce((acc, item) => acc + item.price, 0)
+        }
+        
+        pedidos.push(novoPedido)
+        localStorage.setItem('pedidos', JSON.stringify(pedidos))
+        
+        alert(`🎉 Pedido enviado com sucesso!\n\nEntraremos em contato pelo WhatsApp em breve.`)
+        
+        document.getElementById('order-form').reset()
+        cart = []
+        updateCartCount()
+        renderFormCart()
+    }
+
+    // Inicialização
+    window.onload = function() {
+        renderProducts()
+        updateCartCount()
+        renderFormCart() // já carrega vazio ou com itens se tiver
+    }
     </script>
 </body>
 </html>
